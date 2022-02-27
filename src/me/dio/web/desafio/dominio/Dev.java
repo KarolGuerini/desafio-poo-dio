@@ -1,49 +1,46 @@
 package me.dio.web.desafio.dominio;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public class Dev {
+@Getter
+@Setter
+public class Dev extends Bootcamp {
 
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
 
-    public void inscreverBootcamp(Bootcamp bootcamp){
+    public void inscreverBootcamp(Bootcamp bootcamp) {
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
 
     }
 
-    public void progredir(){
+    public void progredir() {
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-        if (conteudo.isPresent()){
+        if (conteudo.isPresent()) {
             this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
-        }else {
+        } else {
             System.err.println("Você não está matriculado em nenhum conteúdo! ");
         }
 
     }
 
-    public double calcularTotalXP(){
-       return  this.conteudosConcluidos
-               .stream()
-               .mapToDouble(Conteudo::calcularXP)
-               .sum();
+    public double calcularTotalXP() {
+        return this.conteudosConcluidos
+                .stream()
+                .mapToDouble(Conteudo::calcularXP)
+                .sum();
 
 
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Set<Conteudo> getConteudosInscritos() {
