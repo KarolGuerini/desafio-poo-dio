@@ -15,14 +15,15 @@ public class Main {
         curso2.setDescricao("descrição curso javascript");
         curso2.setCargaHoraria(10);
 
-        Conteudo conteudo = new Curso(); //polimorfismo
-        Conteudo conteudo1 = new Mentoria();
+        Mentoria mentoria1 = new Mentoria();
+        mentoria1.setTitulo("mentoria de java");
+        mentoria1.setDescricao("descrição mentoria de java");
+        mentoria1.setData(LocalDate.now());
 
-
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria de java");
-        mentoria.setData(LocalDate.now());
+        Mentoria mentoria2 = new Mentoria();
+        mentoria2.setTitulo("mentoria de javascript");
+        mentoria2.setDescricao("descrição mentoria de javascript");
+        mentoria2.setData(LocalDate.now());
 
 
         Bootcamp bootcamp = new Bootcamp();
@@ -30,10 +31,13 @@ public class Main {
         bootcamp.setDescricao("Descrição Bootcamp Java Developer");
         bootcamp.getConteudos().add(curso1);
         bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        bootcamp.getConteudos().add(mentoria1);
+        bootcamp.getConteudos().add(mentoria2);
+
 
         Dev devKarol = new Dev();
         devKarol.setNome("Karol");
+        String karol = devKarol.getNome();
         devKarol.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos inscritos Karol: " + devKarol.getConteudosInscritos());
         devKarol.progredir();
@@ -43,11 +47,14 @@ public class Main {
         System.out.println("Conteúdos inscritos Karol: " + devKarol.getConteudosInscritos());
         System.out.println("Conteúdos concluidos Karol: " + devKarol.getConteudosConcluidos());
         System.out.println("XP: " + devKarol.calcularTotalXP());
+        System.out.println("");
 
-        System.out.println("----------------------------------------------------------------------");
+        System.out.println("############################################################");
+        System.out.println("");
 
         Dev devMaria = new Dev();
         devMaria.setNome("Maria");
+        String maria = devMaria.getNome();
         devMaria.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos inscritos Maria: " + devMaria.getConteudosInscritos());
         devMaria.progredir();
@@ -55,11 +62,10 @@ public class Main {
         System.out.println("Conteúdos inscritos Maria: " + devMaria.getConteudosInscritos());
         System.out.println("Conteúdos concluidos Maria: " + devMaria.getConteudosConcluidos());
         System.out.println("XP: " + devMaria.calcularTotalXP());
+        System.out.println("");
 
 
-
-
-
+        System.out.println("DEVS INSCRITOS: " + maria + "," + karol);
 
     }
 }
